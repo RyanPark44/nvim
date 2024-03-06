@@ -132,6 +132,19 @@ require('lazy').setup({
   },
   {
     'VonHeikemen/fine-cmdline.nvim',
+    config = function ()
+      require('fine-cmdline').setup({
+        cmdline = {
+          prompt = ': ',
+          enable_keymaps = true
+        },
+        popup = {
+          position = {
+            row = '40%',
+          }
+        }
+      })
+    end,
     vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
   },
 
