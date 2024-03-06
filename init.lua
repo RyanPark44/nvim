@@ -769,9 +769,9 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
-  tsserver = {filetypes = {'javascript'}},
+  tsserver = {filetypes = {'javascript' , 'typescript'}},
   html = { filetypes = { 'html', 'twig', 'hbs'} },
   omnisharp = { filetypes = {'cs'}},
 
