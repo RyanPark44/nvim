@@ -102,7 +102,24 @@ require("lazy").setup({
   },
   {
     "github/copilot.vim",
-    vim.api.nvim_set_keymap("i", "<C-\t>", "<cmd>lua require('copilot').complete()<CR>", { noremap = true, silent = true, expr = true }),
+    vim.api.nvim_set_keymap(
+      "i",
+      "<C-\t>",
+      "<cmd>require('copilot').complete()<CR>",
+      { noremap = true, silent = true, expr = true }
+    ),
+    vim.api.nvim_set_keymap(
+      "n",
+      "<leader>cd",
+      "<cmd>Copilot disable<CR>",
+      { noremap = true, silent = true, }
+    ),
+    vim.api.nvim_set_keymap(
+      "n",
+      "<leader>ce",
+      "<cmd>Copilot enable<CR>",
+      { noremap = true, silent = true, }
+    ),
   },
   {
     -- Auto-pair braces and quotes
@@ -217,22 +234,21 @@ require("lazy").setup({
     },
   },
 
-  -- Theme for tranparent background
   {
     "catppuccin/nvim",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("catppuccin")
+      vim.cmd.colorscheme("catppuccin-macchiato")
     end,
   },
-  -- Monokai theme
-  {
-    "loctvl842/monokai-pro.nvim",
-    priority = 1001,
-    config = function()
-      vim.cmd.colorscheme("monokai-pro")
-    end,
-  },
+--  -- Monokai theme
+--  {
+--    "loctvl842/monokai-pro.nvim",
+--    priority = 1001,
+--    config = function()
+--      vim.cmd.colorscheme("monokai-pro")
+--    end,
+--  },
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
@@ -860,24 +876,24 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+    --["<Tab>"] = cmp.mapping(function(fallback)
+    --  if cmp.visible() then
+    --    cmp.select_next_item()
+    --  elseif luasnip.expand_or_locally_jumpable() then
+    --    luasnip.expand_or_jump()
+    --  else
+    --    fallback()
+    --  end
+    --end, { "i", "s" }),
+    --["<S-Tab>"] = cmp.mapping(function(fallback)
+    --  if cmp.visible() then
+    --    cmp.select_prev_item()
+    --  elseif luasnip.locally_jumpable(-1) then
+    --    luasnip.jump(-1)
+    --  else
+    --    fallback()
+    --  end
+    --end, { "i", "s" }),
   }),
   sources = {
     { name = "nvim_lsp" },
