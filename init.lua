@@ -4,6 +4,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Check for godot project file and launch listening server
+local projectfile = vim.fn.getcwd() .. "/project.godot"
+if projectfile then
+  vim.fn.serverstart('./godothost')
+end
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -54,6 +59,7 @@ require("lazy").setup({
       "folke/neodev.nvim",
     },
   },
+
   -- Null-ls
   {
     "nvimtools/none-ls.nvim",
@@ -241,14 +247,14 @@ require("lazy").setup({
       vim.cmd.colorscheme("catppuccin-macchiato")
     end,
   },
---  -- Monokai theme
---  {
---    "loctvl842/monokai-pro.nvim",
---    priority = 1001,
---    config = function()
---      vim.cmd.colorscheme("monokai-pro")
---    end,
---  },
+  --  -- Monokai theme
+  --  {
+  --    "loctvl842/monokai-pro.nvim",
+  --    priority = 1001,
+  --    config = function()
+  --      vim.cmd.colorscheme("monokai-pro")
+  --    end,
+  --  },
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
@@ -359,6 +365,20 @@ require("lazy").setup({
             return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
           end,
         },
+      }
+      dap.adapters.godot = {
+        type = "server",
+        host = "127.0.0.1",
+        port = 5005,
+      }
+      dap.configurations.gdscript = {
+        {
+          type = "godot",
+          request = "launch",
+          name = "Launch scene",
+          project = "${workspaceFolder}",
+          launch_scene = true,
+        }
       }
 
       vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", { silent = true })
