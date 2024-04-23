@@ -5,10 +5,10 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Check for godot project file and launch listening server
-local projectfile = vim.fn.getcwd() .. "/project.godot"
-if projectfile then
-  vim.fn.serverstart('./godothost')
-end
+-- local projectfile = vim.fn.getcwd() .. "/project.godot"
+-- if projectfile then
+--   vim.fn.serverstart('./godothost')
+-- end
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -829,9 +829,11 @@ local servers = {
   -- gopls = {},
   pyright = {},
   -- rust_analyzer = {},
-  tsserver = { filetypes = { "javascript", "typescript" } },
+  tsserver = { filetypes = { "javascript", "typescript", "typescriptreact" } },
   html = { filetypes = { "html", "twig", "hbs" } },
   omnisharp = { filetypes = { "cs" } },
+  tailwindcss = { filetypes = { "html", "css", "scss", "javascript", "typescript", "typescriptreact" } },
+
 
   lua_ls = {
     Lua = {
