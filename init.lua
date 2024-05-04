@@ -346,6 +346,7 @@ require("lazy").setup({
   },
 
   -- Plugin for Debug Adapter protocol client
+  { "nvim-neotest/nvim-nio" },
   {
     "mfussenegger/nvim-dap",
     version = "*",
@@ -877,7 +878,12 @@ mason_lspconfig.setup_handlers({
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
-luasnip.config.setup({})
+luasnip.config.setup(
+  {version = "v2.*",
+  -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+  -- install jsregexp (optional!).
+  build = "make install_jsregexp"
+})
 
 cmp.setup({
   snippet = {
