@@ -828,12 +828,13 @@ require("mason-lspconfig").setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  pyright = {},
+  pyright = { "python" },
   -- rust_analyzer = {},
   tsserver = { filetypes = { "javascript", "typescript", "typescriptreact" } },
   html = { filetypes = { "html", "twig", "hbs" } },
   omnisharp = { filetypes = { "cs" } },
   tailwindcss = { filetypes = { "html", "css", "scss", "javascript", "typescript", "typescriptreact" } },
+  docker_compose_language_service = { filetypes = { "docker" } },
 
 
   lua_ls = {
